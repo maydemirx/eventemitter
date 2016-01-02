@@ -22,7 +22,8 @@ function Class() {};
 Class.prototype = Inhedron.EventEmitter.prototype;
 
 Class.prototype.someMethod = function() {
-  Console.log('someMethod called');
+  debugger;
+  console.log('someMethod called');
   // emit the event
   this.emit('someCalled', { 'arg1': 'test' });
 }
@@ -35,7 +36,7 @@ function onSomeMethodCalled(args) {
 
 var instance = new Class();
 // register to any event
-var successToRegister = instance.on('sameCalled', onSomeMethodCalled);
-// if the class has not contain sameCalled event successToRegister is set to false
+var successToRegister = instance.on('someCalled', onSomeMethodCalled);
+// if the class has not contain someCalled event successToRegister is set to false
 
 ```
