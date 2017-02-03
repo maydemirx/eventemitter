@@ -18,7 +18,7 @@ There are no dependencies.
 function Class() {};
 
 // the fallowing line inherits your object from Inhedron.EventEmitter 
-// and add event mechanism to your object
+// and adds event mechanism to your object
 Class.prototype = Inhedron.EventEmitter.prototype;
 
 Class.prototype.someMethod = function() {
