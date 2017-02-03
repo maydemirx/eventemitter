@@ -42,7 +42,12 @@ Inhedron.EventEmitter.prototype.emit = function(event, args, thisArg) {
 			if (!thisArg) {
 				thisArg = this;
 			}
-			this.listeners[i].callback.apply(thisArg, args);
+			if (args && Array.isArray(args)) {
+				this.listeners[i].callback.apply(thisArg, args);
+			} else {
+				this.listeners[i].callback.call(thisArg, args);
+			}
+			
 			invocationCount++;
 		}
 	}
