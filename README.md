@@ -25,18 +25,17 @@ Class.prototype.someMethod = function() {
   debugger;
   console.log('someMethod called');
   // emit the event
-  this.emit('someCalled', { 'arg1': 'test' });
+  this.emit('someCalled', ['test', 1, true]);
 }
 
 // end of class 
 
-function onSomeMethodCalled(args) {
-  console.log('onSomeMethodCalled', args);
+function onSomeMethodCalled(strArg, numberArg, booleanArg) {
+  console.log('onSomeMethodCalled', strArg, numberArg, booleanArg); // test, 1, true
 }
 
 var instance = new Class();
 // register to any event
-var successToRegister = instance.on('someCalled', onSomeMethodCalled);
-// if the class has not contain someCalled event successToRegister is set to false
+instance.on('someCalled', onSomeMethodCalled);
 
 ```
