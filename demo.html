@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Event Emitter Demo</title>
+<script type="text/javascript" src="eventemitter.min.js"></script>
+</head>
+<body>
+
+<p>This demo will be show you how to work the event emitter mechanism.</p>
+
+<p><b> Output </b></p>
+
+<textarea id="output" style="width:80%; height:200px"></textarea>
+<br/>
+<button id="button">Create &amp; Show Output</button>
+
+<script type="text/javascript">
+
+	// your own js or html file
+	function Class() {};
+
+	// the fallowing line inherits your object from Inhedron.EventEmitter 
+	// and adds event mechanism to your object
+	Class.prototype = Inhedron.EventEmitter.prototype;
+
+	Class.prototype.someMethod = function() {
+	  document.getElementById('output').value += 'someMethod called\n';
+	  // emit the event
+	  this.emit('someCalled', ['test', 1, true]);
+	}
+
+	Class.prototype.anotherMethod = function() {
+	  document.getElementById('output').value += 'anotherMethod called\n';
+	  // fallowing code to be emit the event and send arguments in object to callback
+	  this.emit('anotherMethodCalled', { 
+	    stringArg: 'test', 
+	    numberArg: 1,
+	    boolArg: true
+	  });
+	}
+
+	Class.prototype.singleArgMethod = function() {
+	  document.getElementById('output').value += 'singleArgMethod called\n';
+	  // fallowing code to be emit the event and send a single argument to callback
+	  this.emit('singleArgMethodCalled', true);
+	}
+
+	function onSomeMethodCalled(strArg, numberArg, booleanArg) {
+	  document.getElementById('output').value += 'onSomeMethodCalled ' + strArg +', ' + numberArg+', '+ booleanArg + '\n';
+	}
+
+	function onAnotherMethodCalled(args) {
+	  document.getElementById('output').value += 'onAnotherMethodCalled ' + JSON.stringify(args) + '\n';
+	}
+
+	function onSingleArgMethod(boolArg) {
+	  document.getElementById('output').value += 'onSingleArgMethod ' + boolArg + '\n';
+	}
+
+	var instance = new Class();
+	// register to any event
+	instance.on('someCalled', onSomeMethodCalled);
+	instance.on('anotherMethodCalled', onAnotherMethodCalled);
+	instance.on('singleArgMethodCalled', onSingleArgMethod);
+
+
+	document.getElementById("button").addEventListener("click", function(){
+	    
+		document.getElementById("output").value = "Class creating\n";
+		// end of class 
+
+		instance.someMethod();
+		instance.anotherMethod();
+		instance.singleArgMethod();
+
+	});
+
+
+</script>
+
+</body>
+</html>
