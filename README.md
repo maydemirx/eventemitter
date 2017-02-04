@@ -65,5 +65,8 @@ instance.on('someCalled', onSomeMethodCalled);
 instance.on('anotherMethodCalled', onAnotherMethodCalled);
 instance.on('singleArgMethod', onSingleArgMethod);
 
+instance.someMethod();
+instance.anotherMethod();
+instance.singleArgMethod();
 
 ```
