@@ -1,17 +1,17 @@
-if (typeof Inhedron === "undefined") {
-    Inhedron = {};
+if (typeof Maydemirx === "undefined") {
+    Maydemirx = {};
 }
 
  /**
  * Constructor
  */
-Inhedron.EventEmitter = function() {}
+Maydemirx.EventEmitter = function() {}
 
 
 /**
  * Contains the listeners
  */
-Inhedron.EventEmitter.prototype.listeners = [];
+Maydemirx.EventEmitter.prototype.listeners = [];
 
 
  /**
@@ -21,7 +21,7 @@ Inhedron.EventEmitter.prototype.listeners = [];
  * @param  callback is call when event emiting
  * @return void
  */
-Inhedron.EventEmitter.prototype.on = function(event, callback) {
+Maydemirx.EventEmitter.prototype.on = function(event, callback) {
 	this.listeners.push({
 		'event': event,
 		'callback': callback
@@ -35,7 +35,7 @@ Inhedron.EventEmitter.prototype.on = function(event, callback) {
  * @param  Array|Object|String|Number args the event arguments
  * @return Number returns the event emit count
  */
-Inhedron.EventEmitter.prototype.emit = function(event, args, thisArg) {
+Maydemirx.EventEmitter.prototype.emit = function(event, args, thisArg) {
 	var invocationCount = 0;
 	for (var i = 0; i < this.listeners.length; i++) {
 		if (this.listeners[i].event == event) {
